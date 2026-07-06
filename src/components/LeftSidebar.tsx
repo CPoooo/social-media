@@ -1,24 +1,22 @@
 "use client"
 
 import Link from "next/link"
-import { House, Hash, BellSimple, Envelope, User, Gear, Sun, Moon } from "@phosphor-icons/react"
+import { HouseIcon, HashIcon, EnvelopeIcon, BellSimpleIcon, UserIcon, GearIcon, SunIcon, MoonIcon } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
 export default function LeftSidebar() {
   const nav = [
-    { href: "/", label: "Home", icon: House },
-    { href: "/explore", label: "Explore", icon: Hash },
-    { href: "/notifications", label: "Notifications", icon: BellSimple },
-    { href: "/messages", label: "Messages", icon: Envelope },
-    { href: "/profile", label: "Profile", icon: User },
-    { href: "/settings", label: "Settings", icon: Gear },
+    { href: "/", label: "Home", icon: HouseIcon },
+    { href: "/explore", label: "Explore", icon: HashIcon },
+    { href: "/notifications", label: "Notifications", icon: BellSimpleIcon },
+    { href: "/messages", label: "Messages", icon: EnvelopeIcon },
+    { href: "/profile", label: "Profile", icon: UserIcon },
+    { href: "/settings", label: "Settings", icon: GearIcon },
   ]
 
   const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
@@ -38,14 +36,15 @@ export default function LeftSidebar() {
             </Link>
           )
         })}
+        <div className="mt-4">
+          <Button variant="ghost" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === "dark" ? <SunIcon size={24} /> : <MoonIcon size={24} />}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
+        </div>
       </nav>
 
-      <div className="mt-4">
-        <Button variant="ghost" onClick={toggleTheme} aria-label="Toggle theme">
-          {mounted && (theme === "dark" ? <Sun size={16} /> : <Moon size={16} />)}
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </div>
+
     </aside>
   )
 }

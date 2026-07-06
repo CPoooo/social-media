@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Heart } from "@phosphor-icons/react"
+import { useEffect } from "react"
+import { HeartIcon } from "@phosphor-icons/react"
 
 export default function Post({ author, content, createdAt }: { author: string; content: string; createdAt: string }) {
   const [liked, setLiked] = useState(false)
@@ -28,7 +29,7 @@ export default function Post({ author, content, createdAt }: { author: string; c
           onClick={() => setLiked((v) => !v)}
           className="flex items-center gap-2 text-sm text-muted-foreground"
         >
-          <Heart size={16} weight={liked ? "fill" : "regular"} className={liked ? "text-destructive" : ""} />
+          <HeartIcon size={16} weight={liked ? "fill" : "regular"} className={liked ? "text-destructive" : ""} />
           <span>{liked ? "Liked" : "Like"}</span>
         </button>
       </footer>
